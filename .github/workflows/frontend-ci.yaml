@@ -31,7 +31,7 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
-          restore-keys: ${{ runner.os }}-node
+          restore-keys: ${{ runner.os }}-node 
 
       - name: Install dependencies
         run: cd starter/frontend && npm ci
@@ -54,6 +54,10 @@ jobs:
 
       - name: Restore cache
         uses: ylemkimon/cache-restore@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
+          restore-keys: ${{ runner.os }}-node 
 
       - name: Install dependencies
         run: cd starter/frontend && npm ci
@@ -80,6 +84,10 @@ jobs:
 
       - name: Restore cache
         uses: ylemkimon/cache-restore@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
+          restore-keys: ${{ runner.os }}-node 
 
       - name: Install dependencies
         run: cd starter/frontend && npm ci
