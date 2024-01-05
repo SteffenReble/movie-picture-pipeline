@@ -21,6 +21,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install pipenv
+        uses: palewire/install-python-pipenv-pipfile@v3
+        with:
+          python-version: 3.9
+
       - name: Install dependencies
         run: cd starter/backend && pipenv install
 
@@ -58,4 +63,3 @@ jobs:
         with:
           context: starter/backend
           tags: mp-backend:latest
-          
