@@ -21,14 +21,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
       - name: Install pipenv
-        run: |
-          sudo apt update
-          sudo apt install python3
-          sudo apt remove pipenv
-          pip3 install pipenv
-          python3 -m pipenv shell
-#          sudo apt-get -y install pipenv
+        run: pip install pipenv
 
       - name: Install dependencies
         run: cd starter/backend && pipenv install
