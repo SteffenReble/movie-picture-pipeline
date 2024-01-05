@@ -22,7 +22,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install pipenv
-        run: sudo apt-get -y install pipenv
+        run: |
+          sudo apt remove pipenv
+          pip3 install pipenv
+          python3 -m pipenv shell
+#          sudo apt-get -y install pipenv
 
       - name: Install dependencies
         run: cd starter/backend && pipenv install
