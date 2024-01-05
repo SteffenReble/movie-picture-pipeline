@@ -23,8 +23,8 @@ jobs:
 
       - name: Install pipenv
         run: |
-          sudo apt-get update
-          sudo apt-get install python3.8
+          sudo apt update
+          sudo apt install python3
           sudo apt remove pipenv
           pip3 install pipenv
           python3 -m pipenv shell
