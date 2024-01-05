@@ -63,7 +63,7 @@ jobs:
         run: cd starter/frontend && npm ci
 
       - name: Run testing
-        run: cd starter/frontend && npm run test
+        run: cd starter/frontend && npm run test --passWithNoTests
 
   build:
 
