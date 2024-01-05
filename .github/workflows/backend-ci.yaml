@@ -1,0 +1,61 @@
+name: Backend Continuous Integration
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+    branches:
+      - 'main'
+    paths:
+      - 'starter/backend/**'
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: cd starter/backend && pipenv install
+
+      - name: Run linting
+        run: cd starter/backend && pipenv run lint
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: cd starter/backend && pipenv install
+
+      - name: Run linting
+        run: cd starter/backend && pipenv run test
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    needs:
+      - lint
+      - test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Docker build
+        uses: docker/build-push-action@v5
+        with:
+          context: starter/backend
+          tags: mp-backend:latest
+          
