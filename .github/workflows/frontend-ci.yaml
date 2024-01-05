@@ -59,7 +59,7 @@ jobs:
 
   build:
 
-    runs-un: ubuntu-latest
+    runs-on: ubuntu-latest
 
     needs:
       - lint
