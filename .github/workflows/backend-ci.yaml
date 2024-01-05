@@ -43,6 +43,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install pipenv
+        run: pip install pipenv
+
       - name: Install dependencies
         run: cd starter/backend && pipenv install
 
