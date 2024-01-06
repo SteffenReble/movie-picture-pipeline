@@ -12,6 +12,7 @@ env:
   PYTHON_VERSION: 3.8
   AWS_REGION: us-east-1
   AWS_ECR_REPO: mp-backend
+  AWS_EKS_CLUSTER: 
 
 jobs:
   lint:
@@ -92,3 +93,18 @@ jobs:
         run: |
           docker build -t $AWS_ECR_REGISTRY/$AWS_ECR_REPO:$IMAGE_VERSION ./starter/backend
           docker push $AWS_ECR_REGISTRY/$AWS_ECR_REPO:$IMAGE_VERSION
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name $AWS_EKS_CLUSTER
+
+      - name: Kubernetes deploy
+        env:
+          AWS_ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_VERSION: ${{ github.sha }}
+        run: |
+          cd starter/backend/k8s
+          kustomize edit set image backend=$AWS_ECR_REGISTRY/$AWS_ECR_REPO:$IMAGE_VERSION
+          kustomize build | kubectl apply -f -
