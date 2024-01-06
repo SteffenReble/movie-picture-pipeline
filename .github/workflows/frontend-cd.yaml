@@ -66,7 +66,7 @@ jobs:
       - name: Run testing
         run: cd starter/frontend && npm run test
 
-  build:
+  deploy:
 
     runs-on: ubuntu-latest
 
