@@ -57,7 +57,7 @@ jobs:
       - name: Install dependencies
         run: cd starter/backend && pipenv install
 
-      - name: Run linting
+      - name: Run testing
         run: cd starter/backend && pipenv run test
 
   build:
