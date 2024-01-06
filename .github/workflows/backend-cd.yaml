@@ -11,7 +11,7 @@ on:
 env:
   PYTHON_VERSION: 3.8
   AWS_REGION: us-east-1
-  AWS_ECR_REPO: mp-backend
+  AWS_ECR_REPO: backend
   AWS_EKS_CLUSTER: cluster
 
 jobs:

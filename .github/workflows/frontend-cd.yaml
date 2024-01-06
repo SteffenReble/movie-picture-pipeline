@@ -11,7 +11,7 @@ on:
 env:
   REACT_APP_MOVIE_API_URL: http://localhost:5000
   AWS_REGION: us-east-1
-  AWS_ECR_REPO: mp-frontend
+  AWS_ECR_REPO: frontend
   AWS_EKS_CLUSTER: cluster
 
 jobs:
