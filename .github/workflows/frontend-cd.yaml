@@ -127,4 +127,4 @@ jobs:
         run: |
           cd starter/frontend/k8s
           kustomize edit set image frontend=$AWS_ECR_REGISTRY/$AWS_ECR_REPO:$IMAGE_VERSION
-          kustomize build | kubectl apply -f -
+          kustomize build | kubectl apply -f - --validate=false
