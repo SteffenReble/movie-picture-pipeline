@@ -88,6 +88,7 @@ jobs:
       - name: Docker build and push
         env:
           AWS_ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_VERSION: ${{ env.GITHUB_SHA }}
         run: |
-          docker build -t $AWS_ECR_REGISTRY/$AWS_ECR_REPO:latest ./starter/backend
-          docker push $AWS_ECR_REGISTRY/$AWS_ECR_REPO:latest
+          docker build -t $AWS_ECR_REGISTRY/$AWS_ECR_REPO:$IMAGE_VERSION ./starter/backend
+          docker push $AWS_ECR_REGISTRY/$AWS_ECR_REPO:$IMAGE_VERSION
